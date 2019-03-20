@@ -2,13 +2,14 @@ package org.academiadecodigo.bootcamp.scanners.menu;
 
 import org.academiadecodigo.bootcamp.scanners.integer.IntegerSetInputScanner;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class CustomMenuInputScanner extends IntegerSetInputScanner {
     private Map<Integer,String> optionMap;
 
     public CustomMenuInputScanner(Map<Integer,String> optionMap) {
         super(optionMap.keySet());
-        this.optionMap = optionMap;
+        this.optionMap = new TreeMap<>(optionMap);
         super.setMessage(buildMenu(getMessage()));
     }
 
@@ -25,7 +26,7 @@ public class CustomMenuInputScanner extends IntegerSetInputScanner {
 
         for(Integer i: optionMap.keySet()) {
             menuBuilder.append("\n");
-            menuBuilder.append(i + " - " + optionMap.get(i));
+            menuBuilder.append(i).append(" - ").append(optionMap.get(i));
         }
 
         menuBuilder.append("\n> ");
